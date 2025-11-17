@@ -211,7 +211,7 @@ section:nth-of-type(odd) {
     margin-bottom: 0.75rem;
 }
 
-
+/* ======== NUOVE SEZIONI (PERCHÉ / DOVE) ======== */
 
 /* Rende il testo centrato e più leggibile */
 .section-centered {
@@ -253,12 +253,16 @@ section:nth-of-type(odd) {
     font-weight: 600;
 }
 
-/* ======== SEZIONE "SERVIZI" ======== */
 
 .services-grid {
     display: flex;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* Usa flexbox come hai chiesto */
+    flex-wrap: wrap;
+    /* FONDAMENTALE: permette alle card di andare a capo */
     gap: 2rem;
+    /* Mantiene lo spazio tra le card */
+    justify-content: center;
+    /* Centra le card se non riempiono tutta la riga */
 }
 
 .service-card {
@@ -268,6 +272,9 @@ section:nth-of-type(odd) {
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    flex: 1 1 300px;
+    min-width: 300px;
+    /* Assicura che la card non sia mai più stretta di 300px */
 }
 
 /* Hover Card: Si alza e il bordo si colora */
@@ -407,6 +414,41 @@ section:nth-of-type(odd) {
     font-size: 1.1rem;
 }
 
+/* CORREZIONE: 
+  Spostato il blocco della checkbox FUORI dalla media query.
+  Ora si applicherà a desktop, tablet e mobile.
+*/
+.form-group-checkbox {
+    display: flex;
+    align-items: flex-start;
+    /* Allinea in alto se il testo va a capo */
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.form-group-checkbox input[type="checkbox"] {
+    width: auto;
+    /* Resetta la larghezza dal 100% */
+    margin-top: 4px;
+    /* Allinea verticalmente la spunta con il testo */
+    margin-right: 10px;
+    flex-shrink: 0;
+    /* Impedisce alla checkbox di rimpicciolirsi */
+}
+
+.form-group-checkbox label {
+    font-weight: 300;
+    /* Testo più leggero */
+    margin-bottom: 0;
+}
+
+.form-group-checkbox label a {
+    font-weight: 600;
+    /* Evidenzia il link */
+    text-decoration: underline;
+}
+
+
 /* ======== FOOTER ======== */
 
 .footer {
@@ -463,6 +505,90 @@ section:nth-of-type(odd) {
     /* Torna alla posizione originale */
 }
 
+.faq-container {
+    max-width: 800px;
+    margin: 2rem auto 0 auto;
+    border-top: 1px solid #ddd;
+    /* Separatore superiore */
+}
+
+.faq-item {
+    border-bottom: 1px solid #ddd;
+    /* Separatore tra domande */
+}
+
+/* Il pulsante che contiene la domanda */
+.faq-question {
+    background: none;
+    border: none;
+    width: 100%;
+    padding: 1.5rem 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    cursor: pointer;
+    text-align: left;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--dark-accent);
+    /* Colore marrone scuro */
+
+    transition: background-color 0.3s ease;
+}
+
+.faq-question:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+    /* Leggero hover */
+}
+
+/* L'icona "+" */
+.faq-icon {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    /* Colore sabbia */
+    transition: transform 0.3s ease-out;
+}
+
+/* La risposta (nascosta di default) */
+.faq-answer {
+    /* Questo è il trucco per l'animazione "rilassata" */
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.4s ease-out, padding 0.4s ease-out;
+    padding: 0 1rem;
+    /* Padding 0 quando è chiuso */
+}
+
+.faq-answer p {
+    margin-bottom: 0;
+    padding-bottom: 1.5rem;
+    /* Spaziatura interna inferiore */
+    line-height: 1.7;
+    /* Leggibilità aumentata per la risposta */
+}
+
+/* --- STATI ATTIVI (gestiti da JS) --- */
+
+/* Quando l'item è attivo, ruota l'icona (da + a x) */
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+/* Quando l'item è attivo, mostra la risposta */
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    /* Un'altezza massima sufficiente per la risposta */
+    opacity: 1;
+    padding: 0 1rem;
+    /* Ripristina il padding laterale */
+}
+
+/* FINE BLOCCO AGGIUNTO */
 
 /* ======== RESPONSIVE DESIGN (Mobile & Tablet) ======== */
 
@@ -553,38 +679,12 @@ section:nth-of-type(odd) {
         /* Centra tutto */
     }
 
-   
-  Stile per la nuova Checkbox Privacy
-*/
-    .form-group-checkbox {
-        display: flex;
-        align-items: flex-start;
-        /* Allinea in alto se il testo va a capo */
-        margin-bottom: 1.5rem;
-        font-size: 0.9rem;
+    .faq-question {
+        font-size: 1.1rem;
+        padding: 1.25rem 0.5rem;
     }
 
-    .form-group-checkbox input[type="checkbox"] {
-        width: auto;
-        /* Resetta la larghezza dal 100% */
-        margin-top: 4px;
-        /* Allinea verticalmente la spunta con il testo */
-        margin-right: 10px;
-        flex-shrink: 0;
-        /* Impedisce alla checkbox di rimpicciolirsi */
+    .faq-answer p {
+        font-size: 0.95rem;
     }
-
-    .form-group-checkbox label {
-        font-weight: 300;
-        /* Testo più leggero */
-        margin-bottom: 0;
-    }
-
-    .form-group-checkbox label a {
-        font-weight: 600;
-        /* Evidenzia il link */
-        text-decoration: underline;
-    }
-
-    /* FINE BLOCCO DA AGGIUNGERE */
 }
