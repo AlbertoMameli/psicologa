@@ -256,9 +256,6 @@ section:nth-of-type(odd) {
 
 .services-grid {
     display: flex;
-    /* Usa flexbox come hai chiesto */
-    flex-wrap: wrap;
-    /* FONDAMENTALE: permette alle card di andare a capo */
     gap: 2rem;
     /* Mantiene lo spazio tra le card */
     justify-content: center;
@@ -580,12 +577,12 @@ section:nth-of-type(odd) {
 }
 
 /* Quando l'item è attivo, mostra la risposta */
+
 .faq-item.active .faq-answer {
-    max-height: 200px;
-    /* Un'altezza massima sufficiente per la risposta */
+    max-height: 1000px;
+    /* Aumentato per sicurezza */
     opacity: 1;
     padding: 0 1rem;
-    /* Ripristina il padding laterale */
 }
 
 /* FINE BLOCCO AGGIUNTO */
