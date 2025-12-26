@@ -684,4 +684,30 @@ section:nth-of-type(odd) {
     .faq-answer p {
         font-size: 0.95rem;
     }
+
+    /* ======== STILE CREDITI SVILUPPATORE ======== */
+
+.developer-credits {
+    margin-top: 1rem;       /* Un po' di spazio dal copyright */
+    font-size: 0.85rem;     /* Testo più piccolo del resto */
+    opacity: 0.7;           /* Leggermente trasparente per non essere invadente */
+    border-top: 1px solid rgba(255,255,255,0.1); /* Una linea sottilissima separatrice (opzionale) */
+    padding-top: 0.5rem;
+}
+
+.developer-credits p {
+    margin: 0;
+}
+
+.developer-credits a {
+    color: var(--white);    /* O il colore che usi per i link nel footer */
+    text-decoration: none;
+    font-weight: 600;       /* Il tuo nome leggermente più grassetto */
+    transition: opacity 0.3s ease;
+}
+
+.developer-credits a:hover {
+    opacity: 1;             /* Diventa pienamente visibile al passaggio del mouse */
+    text-decoration: underline;
+}
 }
